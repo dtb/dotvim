@@ -43,3 +43,5 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 
 let g:CommandTCacheIndexToDisk=1
+
+nmap <silent> <leader>/ :nohlsearch<CR> " ffs
