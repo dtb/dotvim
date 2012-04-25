@@ -2,6 +2,13 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect() 
 set nocompatible
 
+set encoding=utf-8
+set confirm
+
+set title
+
+filetype plugin indent on
+
 set nobackup
 set noswapfile
 
@@ -27,6 +34,8 @@ set hidden "ffs
 
 set wildignore=*.png
 
+set colorcolumn=120
+
 if &t_Co > 2 || has("gui_running")
    " switch syntax highlighting on, when the terminal has colors
    syntax on
@@ -43,5 +52,15 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 
 let g:CommandTCacheIndexToDisk=1
+let g:CommandTMaxFiles=200000
 
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
+
+highlight ExtraWhitespace ctermbg=yellow guibg=yellow
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+set ruler
