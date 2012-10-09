@@ -41,7 +41,10 @@ if &t_Co > 2 || has("gui_running")
    syntax on
 endif
 
-colorscheme darkblue
+set background=dark
+colorscheme baycomb
+
+"colorscheme darkblue
 
 if has("gui_running")
 	set background=dark
@@ -52,7 +55,7 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 
 let g:CommandTCacheIndexToDisk=1
-let g:CommandTMaxFiles=200000
+let g:CommandTMaxFiles=2000000
 
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
@@ -64,3 +67,13 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 set ruler
+
+au BufRead,BufNewFile *.tpl set filetype=smarty
+
+set laststatus=2
+
+imap jj <Esc>
+
+let g:fugitive_github_domains = ['github.etsycorp.com']
+nnoremap <leader>g :Gbrowse<CR>
+vnoremap <leader>g :Gbrowse<CR>

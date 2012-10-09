@@ -10,3 +10,6 @@
 [submodule "bundle/vim-colors-baycomb"]
 	path = bundle/vim-colors-baycomb
 	url = git@github.com:vim-scripts/baycomb.git
+[submodule "bundle/smarty"]
+	path = bundle/smarty
+	url = git://github.com/vim-scripts/smarty-syntax.git
