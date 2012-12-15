@@ -48,7 +48,8 @@ colorscheme baycomb
 
 if has("gui_running")
 	set background=dark
-	colorscheme solarized
+	colorscheme baycomb
+	highlight ColorColumn guibg=purple4
 end
 
 set visualbell           " don't beep
@@ -60,11 +61,11 @@ let g:CommandTMaxFiles=2000000
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
 highlight ExtraWhitespace ctermbg=yellow guibg=yellow
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+"match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter *.php match ExtraWhitespace /\s\+$/
+autocmd InsertEnter *.php match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave *.php match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave *.php call clearmatches()
 
 set ruler
 
@@ -75,5 +76,8 @@ set laststatus=2
 imap jj <Esc>
 
 let g:fugitive_github_domains = ['github.etsycorp.com']
-nnoremap <leader>g :Gbrowse<CR>
 vnoremap <leader>g :Gbrowse<CR>
+
+set visualbell t_vb=    " turn off error beep/flash
+set novisualbell        " turn off visual bell
+
