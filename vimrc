@@ -1,5 +1,5 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect() 
+call pathogen#infect()
 set nocompatible
 
 set encoding=utf-8
