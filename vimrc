@@ -1,6 +1,7 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect() 
 call pathogen#helptags()
+
 set nocompatible
 
 set encoding=utf-8
@@ -49,7 +50,8 @@ colorscheme darkblue
 
 if has("gui_running")
 	set background=dark
-	colorscheme solarized
+	colorscheme baycomb
+	highlight ColorColumn guibg=purple4
 end
 
 set visualbell           " don't beep
@@ -64,11 +66,11 @@ set wildignore=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
 highlight ExtraWhitespace ctermbg=yellow guibg=yellow
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+"match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter *.php match ExtraWhitespace /\s\+$/
+autocmd InsertEnter *.php match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave *.php match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave *.php call clearmatches()
 
 set ruler
 
@@ -88,3 +90,7 @@ set ttimeoutlen=50
 
 vnoremap <leader>n :NERDTree<CR>
 nnoremap <leader>n :NERDTree<CR>
+
+set visualbell t_vb=    " turn off error beep/flash
+set novisualbell        " turn off visual bell
+
