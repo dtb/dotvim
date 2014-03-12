@@ -52,6 +52,9 @@ if has("gui_running")
 	set background=dark
 	colorscheme baycomb
 	highlight ColorColumn guibg=purple4
+else
+	set t_Co=16
+	colorscheme solarized
 end
 
 set visualbell           " don't beep
