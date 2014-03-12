@@ -1,5 +1,6 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect() 
+call pathogen#helptags()
 set nocompatible
 
 set encoding=utf-8
@@ -23,7 +24,7 @@ set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,
+"set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set smarttab      " insert tabs on the start of a line according to
                   "    shiftwidth, not tabstop
@@ -32,7 +33,7 @@ set incsearch     " show search matches as you type
 
 set hidden "ffs
 
-set wildignore=*.png
+set wildignore=*.png,tmp,/tmp/*
 
 set colorcolumn=120
 
@@ -42,9 +43,9 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 set background=dark
-colorscheme baycomb
+"colorscheme baycomb
 
-"colorscheme darkblue
+colorscheme darkblue
 
 if has("gui_running")
 	set background=dark
@@ -56,6 +57,9 @@ set noerrorbells         " don't beep
 
 let g:CommandTCacheIndexToDisk=1
 let g:CommandTMaxFiles=2000000
+let g:CommandTMatchWindowReverse=1
+
+set wildignore=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*
 
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
@@ -77,3 +81,10 @@ imap jj <Esc>
 let g:fugitive_github_domains = ['github.etsycorp.com']
 nnoremap <leader>g :Gbrowse<CR>
 vnoremap <leader>g :Gbrowse<CR>
+
+set autoread " automagically reload files when they've been changed outside vim
+
+set ttimeoutlen=50
+
+vnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>n :NERDTree<CR>
