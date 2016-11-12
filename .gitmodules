@@ -46,3 +46,6 @@
 [submodule "bundle/ctrlp-cmatcher"]
 	path = bundle/ctrlp-cmatcher
 	url = https://github.com/JazzCore/ctrlp-cmatcher.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git

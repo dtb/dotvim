@@ -91,8 +91,8 @@ set autoread " automagically reload files when they've been changed outside vim
 
 set ttimeoutlen=50
 
-vnoremap <leader>n :NERDTree<CR>
-nnoremap <leader>n :NERDTree<CR>
+vnoremap <leader>n :NERDTreeFind<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
 
 set visualbell t_vb=    " turn off error beep/flash
 set novisualbell        " turn off visual bell
@@ -134,3 +134,14 @@ let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 let g:ctrlp_switch_buffer = 0
 
+autocmd BufRead *.tpl call SetTplSettings()
+autocmd BufRead *.mustache call SetTplSettings()
+"autocmd BufLeave *.tpl set nowrap nolinebreak nobreakindent
+
+function SetTplSettings()
+    setlocal wrap linebreak breakindent
+    nnoremap <buffer> k gk
+    nnoremap <buffer> j gj
+    nnoremap <buffer> 0 g0
+    nnoremap <buffer> $ g$
+endfunction
