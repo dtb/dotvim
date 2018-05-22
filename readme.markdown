@@ -6,7 +6,7 @@ To use, first we clone!
     > git clone git://github.com/dtb/dotvim
     > cd dotvim && git submodule update --init
 
-Then add some junk to your .vimrc 
+You should be done, bc the [config repo](/dtb/dotfiles) has the vimrc we need, but if stuff's not happening, you could add this to your vimrc:
 
 	set runtimepath+=~/dotvim
 	source ~/dotvim/vimrc
