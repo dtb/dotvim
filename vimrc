@@ -31,10 +31,10 @@ set smarttab      " insert tabs on the start of a line according to
                   "    shiftwidth, not tabstop
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+set expandtab " :( 
 
 set hidden "ffs
 
-set wildignore=*.png,tmp,/tmp/*
 
 set colorcolumn=120
 
@@ -60,11 +60,11 @@ end
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
-let g:CommandTCacheIndexToDisk=1
+let g:CommandTCacheIndexToDisk=0
 let g:CommandTMaxFiles=2000000
 let g:CommandTMatchWindowReverse=1
 
-set wildignore=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*
+set wildignore=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*,tmp,*.png
 
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
@@ -136,7 +136,10 @@ let g:ctrlp_switch_buffer = 0
 
 autocmd BufRead *.tpl call SetTplSettings()
 autocmd BufRead *.mustache call SetTplSettings()
-"autocmd BufLeave *.tpl set nowrap nolinebreak nobreakindent
+autocmd BufRead *.markdown call SetTplSettings()
+autocmd BufRead *.md call SetTplSettings()
+autocmd FileType ruby setlocal shiftwidth=2
+
 
 function SetTplSettings()
     setlocal wrap linebreak breakindent
