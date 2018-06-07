@@ -2,7 +2,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 
 let NERDTreeMapHelp=''
 
-call pathogen#infect() 
+call pathogen#infect()
 call pathogen#helptags()
 
 set nocompatible
@@ -12,6 +12,7 @@ set confirm
 
 set title
 
+syntax on
 filetype plugin indent on
 
 set nobackup
@@ -44,18 +45,11 @@ set tabstop=2     " a tab is four spaces
 set shiftwidth=2  " number of spaces to use for autoindenting
 set expandtab
 
-if &t_Co > 2 || has("gui_running")
-   " switch syntax highlighting on, when the terminal has colors
-   syntax on
-endif
-
 set background=dark
-"colorscheme baycomb
 
 colorscheme darkblue
 
 if has("gui_running")
-	set background=dark
 	colorscheme baycomb
 	highlight ColorColumn guibg=purple4
 else
@@ -66,20 +60,11 @@ end
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
-let g:CommandTCacheIndexToDisk=0
-let g:CommandTMaxFiles=2000000
-let g:CommandTMatchWindowReverse=1
-
 set wildignore=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*,tmp,*.png
 
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
 highlight ExtraWhitespace ctermbg=yellow guibg=yellow
-"match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter *.php match ExtraWhitespace /\s\+$/
-autocmd InsertEnter *.php match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave *.php match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave *.php call clearmatches()
 
 set ruler
 
@@ -110,7 +95,6 @@ let g:NERDCustomDelimiters = {
 
 " dont limit how many files we remember
 let g:ctrlp_max_files = 0
-" open ctrlp with <leader> t
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_clear_cache_on_exit=0
 
