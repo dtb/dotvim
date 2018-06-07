@@ -1,4 +1,7 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+let NERDTreeMapHelp=''
+
 call pathogen#infect() 
 call pathogen#helptags()
 
@@ -15,13 +18,11 @@ set nobackup
 set noswapfile
 
 set nowrap        " don't wrap lines
-set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start
                   " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
-set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
@@ -37,6 +38,11 @@ set hidden "ffs
 set wildignore=*.png,tmp,/tmp/*
 
 set colorcolumn=120
+
+" todo make this trello specific or something
+set tabstop=2     " a tab is four spaces
+set shiftwidth=2  " number of spaces to use for autoindenting
+set expandtab
 
 if &t_Co > 2 || has("gui_running")
    " switch syntax highlighting on, when the terminal has colors
@@ -64,7 +70,7 @@ let g:CommandTCacheIndexToDisk=1
 let g:CommandTMaxFiles=2000000
 let g:CommandTMatchWindowReverse=1
 
-set wildignore=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*
+set wildignore+=*.class,part-*,_SUCCESS,tmp/*,htdocs/assets/dist/*,lib/jobs/jar/*
 
 nmap <silent> <leader>/ :nohlsearch<CR> " ffs
 
@@ -102,27 +108,11 @@ let g:NERDCustomDelimiters = {
     \ 'mustache': { 'left': '{{!', 'right': '}}' }
 \ }
 
-
-" fucking ctrlp
 " dont limit how many files we remember
 let g:ctrlp_max_files = 0
 " open ctrlp with <leader> t
 let g:ctrlp_map = '<leader>t'
-
-"" we want the standard prompt (replaces buffer)
-"" to open with <c-o> and change the default
-"" to be openMulti, which allows you to choose where
-"" to put the new buffer
-"let g:ctrlp_prompt_mappings = {
-    "\ 'AcceptSelection("e")': ['<c-o>'],
-    "\ 'OpenMulti()': ['<cr>', '<2-LeftMouse>'],
-    "\ }
-" dont rebuild the cache on every load
-"
 let g:ctrlp_clear_cache_on_exit=0
-
-" lazy load to avoid lag
-"let g:ctrlp_lazy_update = 100
 
 " Set ctrlp max window size to 40 (fixes ctrlp missing files, sorta)
 let g:ctrlp_match_window = 'max:40'
@@ -134,8 +124,14 @@ let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 let g:ctrlp_switch_buffer = 0
 
+let g:ctrlp_custom_ignore = {
+  \ 'dir': 'node_modules\|build'
+  \}
+
 autocmd BufRead *.tpl call SetTplSettings()
 autocmd BufRead *.mustache call SetTplSettings()
+autocmd BufRead *.md call SetTplSettings()
+autocmd BufRead *.markdown call SetTplSettings()
 "autocmd BufLeave *.tpl set nowrap nolinebreak nobreakindent
 
 function SetTplSettings()
@@ -145,3 +141,8 @@ function SetTplSettings()
     nnoremap <buffer> 0 g0
     nnoremap <buffer> $ g$
 endfunction
+
+set suffixesadd=.js
+map <leader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
